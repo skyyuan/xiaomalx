@@ -1,9 +1,9 @@
 development:
   adapter: mysql2
-  encoding: utf8mb4
-  reconnect: false
+  encoding: utf8
   database: xiaomalx
-  pool: 5
+  pool: 10
+  host: localhost
   username: root
   password:
   socket: /tmp/mysql.sock

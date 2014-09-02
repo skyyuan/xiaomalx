@@ -1,6 +1,6 @@
-class CreateIndividualLessons < ActiveRecord::Migration
+class CreateSupplementLessons < ActiveRecord::Migration
   def change
-    create_table :individual_lessons do |t|
+    create_table :supplement_lessons do |t|
       t.integer :student_id
       t.integer :teacher_id
       t.string :lesson_name
@@ -10,7 +10,7 @@ class CreateIndividualLessons < ActiveRecord::Migration
       t.string :class_room
       t.date :lesson_date
       t.string :lesson_duration
-      t.text :teacher_evaluate
+      t.text :student_score
       t.integer :curriculum_id
       t.timestamps
     end
