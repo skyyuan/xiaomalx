@@ -9,4 +9,8 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
+<<<<<<< HEAD
 Xiaomalx::Application.config.secret_key_base = '4c9e01a84d133b6b5239535afdae0b2168ff0a7cf24646edaf83e43862c866b950b13e992115a31e63a683b61e09ddfb371350c5dd0c7c9e60f57704016f8420'
+=======
+Xiaomalx::Application.config.secret_key_base = '2d6c0fc9b56f90abf910894bcb00654eb73240db52af2587a882c4bb5a02a8be799d31c215227d8f28a5b97ba166cd9e7131908a426aeb774d1fc0043a4a04ba'
+>>>>>>> first commit
