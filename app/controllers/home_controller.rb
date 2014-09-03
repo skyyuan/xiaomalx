@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
-  before_filter :authenticate_user!
-    # layout "admin"
+  before_filter :authenticate_student_admin!
     def index
-      render "index"
+      # render "index"
     end
 end

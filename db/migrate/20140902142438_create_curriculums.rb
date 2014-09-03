@@ -5,6 +5,8 @@ class CreateCurriculums < ActiveRecord::Migration
       t.string :course_title
       t.text :course_content
       t.date :course_date
+      t.string :arrival_school
+      t.string :leave_school
       t.timestamps
     end
   end

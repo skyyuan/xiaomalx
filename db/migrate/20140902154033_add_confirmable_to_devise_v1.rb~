@@ -18,3 +18,4 @@ class AddConfirmableToDeviseV1 < ActiveRecord::Migration
     add_index :users, :authentication_token, :unique => true
   end
 end
+#INSERT INTO `student_admins` (`created_at`, `email`, `encrypted_password`, `updated_at`) VALUES ('2014-09-03 #01:55:36', 'yuanxiaofei@xiaoma.com', '$2a$10$j6/1AikWZaRqKYe6wgSQJewixvCI8hO.JpRsL2X1wudU9DviZgJ4a', '2014-09-03 #01:55:36')

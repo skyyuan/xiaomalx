@@ -35,6 +35,8 @@ group :doc do
 end
 
 gem 'unicorn'
+gem 'protected_attributes', '~> 1.0.8'
+# gem 'strong_parameters'
 
 # Deploy with Capistrano
 gem 'capistrano', '3.0.1'

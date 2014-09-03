@@ -2,7 +2,7 @@ class CreateIndividualLessons < ActiveRecord::Migration
   def change
     create_table :individual_lessons do |t|
       t.integer :student_id
-      t.integer :teacher_id
+      t.integer :student_admin_id
       t.string :lesson_name
       t.string :course_name
       t.string :teacher_name

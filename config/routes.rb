@@ -1,6 +1,27 @@
 Xiaomalx::Application.routes.draw do
+  devise_for :student_admins
   root :to => 'home#index'
-  devise_for :users
+
+  resources :students do
+    post :code, on: :collection
+    get :census, on: :collection
+  end
+
+  resources :curriculums do
+     get :add1, on: :member
+     get :add2, on: :member
+     get :quer_hour, on: :collection
+     get :same_month, on: :collection
+  end
+
+  resources :individual_lessons do
+      get :admins, on: :collection
+      get :admins_delete, on: :collection
+      get :admin_edit, on: :collection
+      get :admin_update, on: :collection
+      get :today_individual, on: :collection
+      get :course, on: :collection
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
