@@ -1,7 +1,4 @@
 # encoding: utf-8
-# config valid only for Capistrano 3.1
-lock '3.2.1'
-
 set :stages, %w(production xiaomalxtest)
 set :default_stage, "production"
 set :application, 'xiaomalx'
@@ -15,6 +12,8 @@ set :pty, true
 set :deploy_env, 'production'
 # set :deploy_via, :remote_cache
 set :keep_releases, 5
+set :rvm_type, :user
+set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-1.9.3-p547@xiaomalx'
 # set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 # SSHKit.config.command_map[:rake] = "#{fetch(:default_env)[:rvm_bin_path]}/rvm ruby-#{fetch(:rvm_ruby_version)} do bundle exec rake"
