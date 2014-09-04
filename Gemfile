@@ -40,6 +40,7 @@ gem 'protected_attributes', '~> 1.0.8'
 
 # Deploy with Capistrano
 gem 'capistrano', '3.0.1'
+# gem 'capistrano-unicorn', :require => false
 gem 'capistrano-bundler', '1.0.0'
 gem 'capistrano-rails', '1.1.0'
 gem 'capistrano-rvm', '0.0.3'

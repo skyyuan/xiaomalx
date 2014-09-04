@@ -4,11 +4,10 @@ set :rvm_type, :user
 
 server '192.168.1.158', roles: %w{web app db}, user: "xiaomaxl", password: "admins"
 
-# set :repository, "git@github.com:skyyuan/xiaomalx.git"
 set :repo_url, "git@github.com:skyyuan/xiaomalx.git"
 set :branch, "master"
 set :deploy_to, "/home/xiaomaxl/xiaomalx"
-# set :default_shell, :bash
+
 
 namespace :deploy do
   set :unicorn_config, "#{current_path}/config/unicorn.rb"
@@ -60,10 +59,4 @@ namespace :deploy do
       # end
     end
   end
-
-  before 'start', 'rvm:hook'
-  after :finishing, 'deploy:cleanup'
-
-
-  after 'bundler:install', :symlink_db_yml
 end
