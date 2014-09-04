@@ -1,7 +1,4 @@
 # encoding: utf-8
-# config valid only for Capistrano 3.1
-lock '3.2.1'
-
 set :stages, %w(production xiaomalxtest)
 set :default_stage, "production"
 set :application, 'xiaomalx'

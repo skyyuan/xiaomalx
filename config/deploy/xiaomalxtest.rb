@@ -10,16 +10,46 @@ set :deploy_to, "/home/xiaomaxl/xiaomalx"
 
 
 namespace :deploy do
+  set :unicorn_config, "#{current_path}/config/unicorn.rb"
+  set :unicorn_pid, "#{shared_path}/tmp/unicorn.pid"
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
+    on roles(:all), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      execute "if [ -f #{fetch(:unicorn_pid)} ]; then kill -USR2 `cat #{fetch(:unicorn_pid)}`; fi"
     end
   end
 
-  after :publishing, :restart
+  desc 'stop application'
+  task :stop do
+    on roles(:all), in: :sequence, wait: 5 do
+    execute "if [ -f #{fetch(:unicorn_pid)} ]; then kill -QUIT `cat #{fetch(:unicorn_pid)}`; fi"
+    end
+  end
+
+  desc 'start application'
+  task :start do
+    on roles(:all), in: :sequence, wait: 5 do
+    within "#{current_path}" do
+        with rails_env: "production", bundle_gemfile: fetch(:bundle_gemfile) do
+        execute :bundle, :exec, "unicorn_rails -c #{fetch(:unicorn_config)} -D"
+        end
+      end
+    end
+  end
+
+  desc 'init db seed'
+  task :seed do
+    on roles(:all), in: :sequence, wait: 5 do
+    within "#{current_path}" do
+        with rails_env: "production" do
+        execute :rake, "db:seed"
+        end
+      end
+    end
+  end
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -29,5 +59,4 @@ namespace :deploy do
       # end
     end
   end
-
 end
