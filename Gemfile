@@ -46,7 +46,7 @@ gem 'capistrano-rvm', '0.0.3'
 
 gem "devise", "~> 3.2.2"
 gem "devise-encryptable"
-gem 'ekuseru'
+# gem 'ekuseru'
 
 gem 'kaminari', "0.14.1"
 gem 'carrierwave'

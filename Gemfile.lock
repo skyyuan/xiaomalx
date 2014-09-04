@@ -72,9 +72,6 @@ GEM
       warden (~> 1.2.3)
     devise-encryptable (0.2.0)
       devise (>= 2.1.0)
-    ekuseru (0.3.10)
-      rails (>= 3.0)
-      spreadsheet (>= 0.6)
     erubis (2.7.0)
     execjs (2.2.1)
     hike (1.2.3)
@@ -130,7 +127,6 @@ GEM
     rest-client (1.6.8)
       mime-types (~> 1.16)
       rdoc (>= 2.4.2)
-    ruby-ole (1.2.11.7)
     rufus-scheduler (3.0.9)
       tzinfo
     sass (3.2.19)
@@ -142,8 +138,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    spreadsheet (1.0.0)
-      ruby-ole (>= 1.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -190,7 +184,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise (~> 3.2.2)
   devise-encryptable
-  ekuseru
   jbuilder (~> 1.2)
   jpush!
   jpush_api_ruby_client (~> 0.0.4)
