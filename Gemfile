@@ -34,15 +34,19 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'unicorn'
+gem 'puma'
+
+gem 'capistrano', '~> 3.2.0'
+gem 'capistrano3-puma'
+gem 'capistrano-rvm'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1'
+
+
+# gem 'unicorn'
 gem 'protected_attributes', '~> 1.0.8'
 # gem 'strong_parameters'
 
-# Deploy with Capistrano
-gem 'capistrano', '3.0.1'
-gem 'capistrano-bundler', '1.0.0'
-gem 'capistrano-rails', '1.1.0'
-gem 'capistrano-rvm', '0.0.3'
 
 gem "devise", "~> 3.2.2"
 gem "devise-encryptable"
