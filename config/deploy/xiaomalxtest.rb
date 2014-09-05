@@ -11,7 +11,7 @@ set :deploy_to, "/home/xiaomaxl/xiaomalx"
 
 namespace :deploy do
   set :unicorn_config, "#{current_path}/config/unicorn.rb"
-  set :unicorn_pid, "#{shared_path}/tmp/unicorn.pid"
+  set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 
   desc 'Restart application'
   task :restart do
@@ -59,4 +59,6 @@ namespace :deploy do
       # end
     end
   end
+  before 'start', 'rvm:hook'
+  after :finishing, 'deploy:cleanup'
 end

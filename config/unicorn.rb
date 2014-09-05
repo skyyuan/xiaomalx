@@ -5,14 +5,14 @@ working_directory app_root
 shared_root = "/home/xiaomaxl/xiaomalx/shared"
 
 # Listen on fs socket for better performance
-listen "#{shared_root}/tmp/unicorn.sock", :backlog => 64
+listen "#{shared_root}/tmp/pids/unicorn.sock", :backlog => 64
 listen 9201, :tcp_nopush => false
 
 # Nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
 
 # App PID
-pid "#{shared_root}/tmp/unicorn.pid"
+pid "#{shared_root}/tmp/pids/unicorn.pid"
 
 # By default, the Unicorn logger will write to stderr.
 # Additionally, some applications/frameworks log to stderr or stdout,
@@ -34,7 +34,7 @@ end
 before_fork do |server, worker|
   # 参考 http://unicorn.bogomips.org/SIGNALS.html
   # 使用USR2信号，以及在进程完成后用QUIT信号来实现无缝重启
-  old_pid = shared_root + '/tmp/unicorn.pid.oldbin'
+  old_pid = shared_root + '/tmp/pids/unicorn.pid.oldbin'
   if File.exists?(old_pid) && server.pid != old_pid
     begin
       Process.kill("QUIT", File.read(old_pid).to_i)
