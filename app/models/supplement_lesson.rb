@@ -15,7 +15,7 @@ class SupplementLesson < ActiveRecord::Base
       msg_title = '亲爱的小马家长'
       msg_content = "您的孩子今天的辅课成绩已经更新！"
       alias_value = self.student.id
-      Message.create(curriculum_id: self.curriculum_id, is_check: 0,state: 4, student_id: self.student_id)
+      Message.create(curriculum_id: self.curriculum_id, is_check: 0,state: 4, student_id: self.student_id, msg_content: "您孩子#{self.lesson_date}日的辅课成绩已更新！")
       push_client.send_notification_with_tag(send_no, alias_value, msg_title, msg_content)
     end
   end

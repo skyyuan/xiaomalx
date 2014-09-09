@@ -22,7 +22,7 @@ class Curriculum < ActiveRecord::Base
       msg_title = '亲爱的小马家长'
       msg_content = "您的孩子今日到校时间【#{self.arrival_school}】"
       alias_value = self.student.id
-      Message.create(curriculum_id: self.id, is_check: 0,state: 1, student_id: self.student_id)
+      Message.create(curriculum_id: self.id, is_check: 0,state: 2, student_id: self.student_id, msg_content: "您孩子#{selfcourse_date}日到校时间-#{self.arrival_school}!")
       push_client.send_notification_with_tag(send_no, alias_value, msg_title, msg_content)
     end
   end
@@ -36,7 +36,7 @@ class Curriculum < ActiveRecord::Base
       msg_title = '亲爱的小马家长'
       msg_content = "您的孩子今日离校时间【#{self.leave_school}】"
       alias_value = self.student.id
-      Message.create(curriculum_id: self.id, is_check: 0,state: 2, student_id: self.student_id)
+      Message.create(curriculum_id: self.id, is_check: 0,state: 2, student_id: self.student_id, msg_content: "您孩子#{selfcourse_date}日离校时间-#{self.arrival_school}!")
       push_client.send_notification_with_tag(send_no, alias_value, msg_title, msg_content)
     end
   end

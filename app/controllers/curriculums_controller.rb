@@ -1,6 +1,6 @@
 #encoding : utf-8
 class CurriculumsController < ApplicationController
-    before_filter :authorize_student_admin!, :except => [:quer_hour, :same_month]
+  before_filter :authorize_student_admin!, :except => [:quer_hour, :same_month]
   def index
     @curriculums = Curriculum.where(student_id: session[:student_id]).order('course_date DESC')
 
