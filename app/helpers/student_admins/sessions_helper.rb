@@ -1,0 +1,2 @@
+module StudentAdmins::SessionsHelper
+end

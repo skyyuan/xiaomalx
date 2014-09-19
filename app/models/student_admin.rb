@@ -5,4 +5,6 @@ class StudentAdmin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :students, :dependent => :destroy
+  # attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
+  attr_accessible :email, :password, :password_confirmation, :remember_me#, :role_id
 end

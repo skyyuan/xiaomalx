@@ -47,7 +47,6 @@ gem 'capistrano-rails', '~> 1.1'
 gem 'protected_attributes', '~> 1.0.8'
 # gem 'strong_parameters'
 
-
 gem "devise", "~> 3.2.2"
 gem "devise-encryptable"
 # gem 'ekuseru'
@@ -57,3 +56,4 @@ gem 'carrierwave'
 gem 'jpush_api_ruby_client','~> 0.0.4'  #极光消息推送
 gem 'jpush', :git => 'https://github.com/jpush/jpush-api-ruby-client.git'
 gem 'rufus-scheduler','~> 3.0.6'  #定时任务
+# gem 'xmpp4r' #聊天工具

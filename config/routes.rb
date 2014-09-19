@@ -1,5 +1,6 @@
 Xiaomalx::Application.routes.draw do
   devise_for :student_admins
+  # devise_for :student_admins, :controllers => { :sessions => "student_admins/sessions" }
   root :to => 'home#index'
 
   resources :students do
