@@ -25,6 +25,14 @@ Xiaomalx::Application.routes.draw do
   end
 
   resources :messages
+
+  resources :users do
+    post :login, on: :collection
+    post :register, on: :collection
+    post :forgot, on: :collection
+  end
+
+  resources :advisory_informations
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
