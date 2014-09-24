@@ -42,19 +42,32 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
 
-    def forgot
-      user = Elder.find_by_phone(params[:phone])
-      if user.present?
-        user.password = params[:password]
-        user.save
-        respond_to do |format|
-          format.json { render json: {result: 1, message: "修改成功，请返回登陆！"} }
-        end
-      else
-        respond_to do |format|
-          format.json { render json: {result: 0, message: "该手机号不存在！"} }
-        end
+  def verify_phone
+    user = Elder.find_by_phone(params[:phone])
+    if user.present?
+      sms = UserSms.captcha_sms(user)
+      respond_to do |format|
+        smscode = JSON.parse(sms)
+        format.json { render json: {result: 1, smscode: smscode['statusCode'] } }
+      end
+    else
+      head 404
+    end
+  end
+
+  def forgot
+    user = Elder.find_by_phone(params[:phone])
+    if user.present?
+      user.password = params[:password]
+      user.save
+      respond_to do |format|
+        format.json { render json: {result: 1, message: "修改成功，请返回登陆！"} }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: {result: 0, message: "该手机号不存在！"} }
       end
     end
   end

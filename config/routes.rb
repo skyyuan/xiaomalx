@@ -29,6 +29,7 @@ Xiaomalx::Application.routes.draw do
   resources :users do
     post :login, on: :collection
     post :register, on: :collection
+    post :verify_phone, on: :collection
     post :forgot, on: :collection
   end
 
