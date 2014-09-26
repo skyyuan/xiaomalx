@@ -38,6 +38,8 @@ GEM
       activesupport (>= 3.0.0)
       rack (>= 1.1.0)
     arel (4.0.2)
+    awesome_nested_set (3.0.1)
+      activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.7)
     builder (3.1.4)
     capistrano (3.2.1)
@@ -177,6 +179,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   acts_as_api
+  awesome_nested_set (~> 3.0.0.rc.3)
   capistrano (~> 3.2.0)
   capistrano-bundler (~> 1.1.2)
   capistrano-rails (~> 1.1)
