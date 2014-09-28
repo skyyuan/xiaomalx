@@ -1,7 +1,16 @@
 #encoding : utf-8
 class ConsultantUserController < ApplicationController
 
-  before_filter :authorize_consultant_user, :except => [:register,:login_in]
+  before_filter :authorize_consultant_user, :except => [:register,:login_in,:phone_exist]
+
+  def phone_exist
+    user = ConsultantUser.where({:phone=>params[:phone]})
+    if user.blank?
+      render_success_json('尚未注册')
+    else
+      render_failure_json('已经注册')
+    end
+  end
 
   #留学顾问注册的接口
   #URL:consultant_user/register

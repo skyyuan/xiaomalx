@@ -86,4 +86,15 @@ class ConsultantUserControllerTest < ActionController::TestCase
     assert_equal j["flag"],1
   end
 
+  def test_phone_exist
+    post :phone_exist,{:phone=>@login_user.phone}
+    j =ActiveSupport::JSON.decode(@response.body)
+    assert_equal j["flag"],0
+
+    post :phone_exist,{:phone=>"13488856782"}
+    j =ActiveSupport::JSON.decode(@response.body)
+    assert_equal j["flag"],1
+
+  end
+
 end
