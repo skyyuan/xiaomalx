@@ -1,5 +1,6 @@
 #encoding : utf-8
 class OverseasStudentsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_filter :authorize_consultant_user
   before_action :set_overseas_student, only: [:get_student_info]
 
