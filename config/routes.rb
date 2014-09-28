@@ -26,8 +26,20 @@ Xiaomalx::Application.routes.draw do
 
   resources :messages
 
-  match ':controller(/:action(/:id))(.:format)',:via=>[:get, :post]
+  resources :users do
+    post :login, on: :collection
+    post :register, on: :collection
+    post :verify_phone, on: :collection
+    post :forgot, on: :collection
+  end
 
+  resources :advisory_informations
+
+  resources :categories do
+    get :profe_children_tags, on: :collection
+  end
+
+  match ':controller(/:action(/:id))(.:format)',:via=>[:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

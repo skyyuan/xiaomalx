@@ -57,3 +57,5 @@ gem 'jpush_api_ruby_client','~> 0.0.4'  #极光消息推送
 gem 'jpush', :git => 'https://github.com/jpush/jpush-api-ruby-client.git'
 gem 'rufus-scheduler','~> 3.0.6'  #定时任务
 # gem 'xmpp4r' #聊天工具
+gem "rest-client"
+gem 'awesome_nested_set', '~> 3.0.0.rc.3'
