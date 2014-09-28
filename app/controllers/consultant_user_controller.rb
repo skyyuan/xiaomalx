@@ -1,6 +1,6 @@
 #encoding : utf-8
 class ConsultantUserController < ApplicationController
-
+  skip_before_filter :verify_authenticity_token
   before_filter :authorize_consultant_user, :except => [:register,:login_in,:phone_exist]
 
   def phone_exist
