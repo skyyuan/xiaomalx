@@ -1,7 +1,9 @@
 Xiaomalx::Application.routes.draw do
+
   devise_for :student_admins
   # devise_for :student_admins, :controllers => { :sessions => "student_admins/sessions" }
   root :to => 'home#index'
+
 
   resources :students do
     post :code, on: :collection
@@ -25,11 +27,14 @@ Xiaomalx::Application.routes.draw do
   end
 
   resources :messages
+
+  match ':controller(/:action(/:id))(.:format)',:via=>[:get, :post]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # root 'welcome#consultant_index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
