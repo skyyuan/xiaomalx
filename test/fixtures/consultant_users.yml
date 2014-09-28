@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+
+#登录用户
+login_user:
+   uid: 1
+   phone: 13488856781
+   token: token
+   name: name
+   encrypted_password: encrypted_password
+   invitation_code: invitation_code
+   institution_name: institution_name
+   is_public: 0
+   education_id: 本科,研究生
+   professional_id: 金融,地理
+   country_id: 亚洲,美国
+
+#退出用户
+sign_out_user:
+   uid: 2
+   phone: 13488856780
+   name: name
+   encrypted_password: encrypted_password
+   invitation_code: invitation_code
+   institution_name: institution_name
+   is_public: 0
+   education_id: 本科,研究生
+   professional_id: 金融,地理
+   country_id: 亚洲,美国
+
+login_user1:
+   uid: 3
+   phone: 13488856779
+   token: token1
+   name: name
+   encrypted_password: encrypted_password
+   invitation_code: invitation_code
+   institution_name: institution_name
+   is_public: 0
+   education_id: 本科,研究生
+   professional_id: 金融,地理
+   country_id: 亚洲,美国

@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+normal_student:
+  id: 1
+  code: 1
+  name: 学生名称
+  phone: 13487699001
+  relationship: 家长
+  contact_name: 联络人名称
+  contact_phone: 联络人电话
+  background: 学员的背景与需求
+  student_status: 1  #跟进要求（0:表示跟进中，1：常规，2：紧急，3：即将到访
+  comment: 备注,
+  fllow_up_status: 0 #0:表示跟进中，1：已签，2：无效
+  creator_id: 1
+
+urgent_student:
+  id: 2
+  code: 2
+  name: 学生名称
+  phone: 13487699000
+  relationship: 家长
+  contact_name: 联络人名称
+  contact_phone: 联络人电话
+  background: 学员的背景与需求
+  student_status: 2  #跟进要求（0:表示跟进中，1：常规，2：紧急，3：即将到访
+  comment: 备注
+  fllow_up_status: 1 #0:表示跟进中，1：已签，2：无效
+  creator_id: 1
+
+student:
+  id: 3
+  code: 3
+  name: 学生名称
+  phone: 13487699000
+  relationship: 家长
+  contact_name: 联络人名称
+  contact_phone: 联络人电话
+  background: 学员的背景与需求
+  student_status: 2  #跟进要求（0:表示跟进中，1：常规，2：紧急，3：即将到访
+  comment: 备注
+  fllow_up_status: 1 #0:表示跟进中，1：已签，2：无效
+  creator_id: 2
