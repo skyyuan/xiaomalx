@@ -53,7 +53,9 @@ class UsersController < ApplicationController
         format.json { render json: {result: 1, smscode: smscode['statusCode'] } }
       end
     else
-      head 404
+      respond_to do |format|
+        format.json { render json: {result: 0, error: "手机号不存在" } }
+      end
     end
   end
 
