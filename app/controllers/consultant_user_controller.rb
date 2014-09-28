@@ -1,3 +1,4 @@
+#encoding : utf-8
 class ConsultantUserController < ApplicationController
 
   before_filter :authorize_consultant_user, :except => [:register,:login_in]

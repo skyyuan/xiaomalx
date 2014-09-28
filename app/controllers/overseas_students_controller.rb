@@ -1,3 +1,4 @@
+#encoding : utf-8
 class OverseasStudentsController < ApplicationController
   before_filter :authorize_consultant_user
   before_action :set_overseas_student, only: [:get_student_info]

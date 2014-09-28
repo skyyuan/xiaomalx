@@ -1,3 +1,4 @@
+#encoding : utf-8
 class OverseasStudent < ActiveRecord::Base
 
   attr_accessible :code, :name, :phone,:relationship, :contact_name, :contact_phone,:background,
