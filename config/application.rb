@@ -11,6 +11,7 @@ end
 
 module Xiaomalx
   class Application < Rails::Application
+    config.i18n.enforce_available_locales = false
     config.time_zone = 'Beijing'
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
