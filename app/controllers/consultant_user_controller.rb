@@ -1,7 +1,7 @@
 #encoding : utf-8
 class ConsultantUserController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_filter :authorize_consultant_user, :except => [:register,:login_in,:phone_exist]
+  before_filter :authorize_consultant_user, :except => [:register,:login_in,:phone_exist,:verify_phone,:forget_password]
 
   def phone_exist
     user = ConsultantUser.where({:phone=>params[:phone]})
@@ -82,8 +82,8 @@ class ConsultantUserController < ApplicationController
     params= consultant_user_params
     user = ConsultantUser.where({ phone:params[:phone],encrypted_password:params[:encrypted_password] }).first
     if user.present?
-        user.login
-        render_success_json('登陆成功',{'uid'=>user.uid,'token'=>user.token})
+      user.login
+      render_success_json('登陆成功',{'uid'=>user.uid,'token'=>user.token})
     else
       render_failure_json('用户名或密码错误')
     end
@@ -127,6 +127,28 @@ class ConsultantUserController < ApplicationController
   # }
   def get_consultant_user_info
     render_success_json('用户信息',@current_user.to_json)
+  end
+
+  def verify_phone
+    user = ConsultantUser.find_by_phone(params[:phone])
+    if user.present?
+      sms = UserSms.captcha_sms(user)
+      smscode = JSON.parse(sms)
+      render_success_json('短信验证码',{smscode: smscode['statusCode']})
+    else
+      render_failure_json('手机号码不存在')
+    end
+  end
+
+  def forget_password
+    user = ConsultantUser.find_by_phone(params[:phone])
+    if user.present?
+      user.encrypted_password = params[:encrypted_password]
+      user.save
+      render_success_json('修改成功，请返回登陆！')
+    else
+      render_failure_json('手机号码不存在')
+    end
   end
 
   private
