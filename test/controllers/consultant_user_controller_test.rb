@@ -7,7 +7,7 @@ class ConsultantUserControllerTest < ActionController::TestCase
     @sign_out_user =consultant_users(:sign_out_user)
     @login_user =consultant_users(:login_user)
     @user = {
-#        :phone=>13488856781,
+#       :phone=>13488856781,
         :name=>"name",
         :encrypted_password=> "encrypted_password",
         :invitation_code=>"invitation_code",
@@ -94,7 +94,14 @@ class ConsultantUserControllerTest < ActionController::TestCase
     post :phone_exist,{:phone=>"13488856782"}
     j =ActiveSupport::JSON.decode(@response.body)
     assert_equal j["flag"],1
+  end
 
+  def test_forget_password
+    post :forget_password,{:phone=>@sign_out_user.phone,:encrypted_password=>"123"}
+    j =ActiveSupport::JSON.decode(@response.body)
+    u = ConsultantUser.where({:uid=>@sign_out_user.uid}).first
+    assert_equal u.encrypted_password,'123'
+    assert_equal j["flag"],1
   end
 
 end
