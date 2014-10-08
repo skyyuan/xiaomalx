@@ -3,6 +3,7 @@ lock '3.2.1'
 
 set :application, 'xiaomalx'
 set :repo_url, 'git@github.com:skyyuan/xiaomalx.git'
+#set :repo_url, 'git@dev.xiaoma-development.org:yuanxiaofei/xiaomalx.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
