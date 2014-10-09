@@ -3,7 +3,10 @@ class AdvisoryInformationsController < ApplicationController
   skip_before_filter :verify_authenticity_token
   def create
     if params[:user_id]
-      advisory_info = AdvisoryInformation.new
+      advisory_info = AdvisoryInformation.find_by_elder_id(params[:user_id])
+      if !advisory_info.present?
+        advisory_info = AdvisoryInformation.new
+      end
       advisory_info.destination = params[:destination]
       advisory_info.education = params[:education]
       advisory_info.professional = params[:professional]

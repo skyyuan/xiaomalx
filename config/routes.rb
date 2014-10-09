@@ -40,7 +40,12 @@ Xiaomalx::Application.routes.draw do
   end
 
   match ':controller(/:action(/:id))(.:format)',:via=>[:get, :post]
-  resources :questions
+
+  resources :questions do
+    get :question_count, on: :collection
+    get :questions_tags, on: :collection
+    get :hot_tag, on: :collection
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
