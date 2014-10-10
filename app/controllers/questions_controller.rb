@@ -35,14 +35,14 @@ class QuestionsController < ApplicationController
 
   def question_count
     tag
-    que_ids = @question_tags.map(&:question_id)
+    que_ids = @question_tags.map &:question_id
     answers_count = Question.where(id: que_ids).sum('answer_count')
     render :json => {question_count: @question_tags.count, answers_count: answers_count}
   end
 
   def questions_tags
     tag
-    que_ids = @question_tags.map(&:question_id)
+    que_ids = @question_tags.map &:question_id
     questions = Question.where(id: que_ids)
     if params[:new].present?
       questions = questions.order("created_at desc")
@@ -66,12 +66,17 @@ class QuestionsController < ApplicationController
     render :json => json_data
   end
 
+  def question_answers
+    answers = Answer.where(question_id: params[:question_id])
+    render :json => answers
+  end
+
   def tag
     category = Category.find(params[:tag_id])
     if category.parent.name == 'level'
       @question_tags = QuestionTag.where(level_id: params[:tag_id])
     elsif category.parent.name == 'country'
-      @question_tags = QuestionTag.where(country_id_id: params[:tag_id])
+      @question_tags = QuestionTag.where(country_id: params[:tag_id])
     elsif category.parent.name == 'other'
       @question_tags = QuestionTag.where(other_id: params[:tag_id])
     else

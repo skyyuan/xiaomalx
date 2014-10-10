@@ -43,7 +43,10 @@ Xiaomalx::Application.routes.draw do
     get :question_count, on: :collection
     get :questions_tags, on: :collection
     get :hot_tag, on: :collection
+    get :question_answers, on: :collection
   end
+
+  resources :answers
 
   match ':controller(/:action(/:id))(.:format)',:via=>[:get, :post]
 
