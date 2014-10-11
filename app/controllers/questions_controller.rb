@@ -56,14 +56,14 @@ class QuestionsController < ApplicationController
   def hot_tag
     category = Category.find(params[:tag_id])
     categories = Category.where("parent_id is not null and parent_id <> ? and parent_id <> ?",category.parent.id,params[:tag_id])
-    json_data = {}
-    categories.each do |cat|
-      logger.debug(cat.parent.name)
-      if !cat.parent.parent.present?
-        json_data.merge!(cat.id => cat.name)
-      end
-    end
-    render :json => json_data
+    # json_data = {}
+    # categories.each do |cat|
+    #   if !cat.parent.parent.present?
+    #     json_data.merge!(cat.id => cat.name)
+    #   end
+    # end
+    # render :json => json_data
+    render :json => categories
   end
 
   def question_answers

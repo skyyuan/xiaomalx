@@ -1,7 +1,7 @@
 #encoding : utf-8
 class ConsultantUserController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_filter :authorize_consultant_user, :except => [:register,:login_in,:phone_exist,:verify_phone,:forget_password]
+  # before_filter :authorize_consultant_user, :except => [:register,:login_in,:phone_exist,:verify_phone,:forget_password]
 
   def phone_exist
     user = ConsultantUser.where({:phone=>params[:phone]})
@@ -10,6 +10,11 @@ class ConsultantUserController < ApplicationController
     else
       render_failure_json('已经注册')
     end
+  end
+
+  def consultant_user_list
+    user = ConsultantUser.all
+    render :json => user
   end
 
   #留学顾问注册的接口
