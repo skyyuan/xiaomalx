@@ -48,6 +48,8 @@ Xiaomalx::Application.routes.draw do
 
   resources :answers
 
+  resources :common_problems
+
   match "/consultant_user_list" => "consultant_user#consultant_user_list",:via=>[:get]
 
   match ':controller(/:action(/:id))(.:format)',:via=>[:get, :post]

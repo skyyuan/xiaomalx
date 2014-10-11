@@ -1,0 +1,2 @@
+module CommonProblemsHelper
+end
