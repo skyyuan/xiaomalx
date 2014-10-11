@@ -24,6 +24,7 @@ class QuestionsController < ApplicationController
         tag.level_id = params[:level_id]
         tag.country_id = params[:country_id]
         tag.profe_id = params[:profe_id]
+        tag.profe_children_id = params[:profe_children_id] if params[:profe_children_id].present?
         tag.other_id = params[:other_id]
         tag.save
       end
