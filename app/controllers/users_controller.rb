@@ -17,8 +17,12 @@ class UsersController < ApplicationController
       elders = Elder.where(phone: params[:phone], password: params[:password])
       user = elders.first if elders.present?
     end
+    is_advisory_informations = 0
+    if user.present?
+      is_advisory_informations = AdvisoryInformation.where(elder_id: user.id).count
+    end
     respond_to do |format|
-      format.json { render json: {result: 1, user: user} } if user.present?
+      format.json { render json: {result: 1, user: user, is_advisory: is_advisory_informations} } if user.present?
       format.json { render json: {result: 0, message: "您输入的密码有误, 请重新输入！"} } if !user.present?
     end
   end

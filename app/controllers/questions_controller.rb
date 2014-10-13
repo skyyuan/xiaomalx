@@ -3,14 +3,15 @@ class QuestionsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    question = Question
+    questions = Question.all
     if params[:new].present?
-      question = question.order("created_at desc")
+      questions = questions.order("recommend desc").order("created_at desc")
     end
     if params[:hot].present?
-      question = question.order("answer_count desc")
+      questions = questions.order("answer_count desc")
     end
-    render :json => question and return
+    questions = questions.page(params[:page]).per(params[:page_per])
+    render :json => questions and return
   end
 
   def create
@@ -34,54 +35,28 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def question_count
-    tag
-    que_ids = @question_tags.map &:question_id
-    answers_count = Question.where(id: que_ids).sum('answer_count')
-    render :json => {question_count: @question_tags.count, answers_count: answers_count}
-  end
-
   def questions_tags
-    tag
-    que_ids = @question_tags.map &:question_id
-    questions = Question.where(id: que_ids)
-    if params[:new].present?
-      questions = questions.order("created_at desc")
+    questions = Question
+    if params[:level_id].present?
+      questions = questions.where(level_id: params[:level_id])
     end
-    if params[:hot].present?
-      questions = questions.order("answer_count desc")
+    if params[:country_id].present?
+      questions = questions.where(country_id: params[:country_id])
     end
-    render :json => questions and return
-  end
+    if params[:profe_children_id].present?
+    else
+      if params[:profe_id].present?
+      end
+    end
 
-  def hot_tag
-    category = Category.find(params[:tag_id])
-    categories = Category.where("parent_id is not null and parent_id <> ? and parent_id <> ?",category.parent.id,params[:tag_id])
-    # json_data = {}
-    # categories.each do |cat|
-    #   if !cat.parent.parent.present?
-    #     json_data.merge!(cat.id => cat.name)
-    #   end
-    # end
-    # render :json => json_data
-    render :json => categories
+    render :json => questions and return
   end
 
   def question_answers
     answers = Answer.where(question_id: params[:question_id])
+    question = Question.find params[:question_id]
+    question.preview = question.preview.to_i + 1
+    question.save
     render :json => answers
-  end
-
-  def tag
-    category = Category.find(params[:tag_id])
-    if category.parent.name == 'level'
-      @question_tags = QuestionTag.where(level_id: params[:tag_id])
-    elsif category.parent.name == 'country'
-      @question_tags = QuestionTag.where(country_id: params[:tag_id])
-    elsif category.parent.name == 'other'
-      @question_tags = QuestionTag.where(other_id: params[:tag_id])
-    else
-      @question_tags = QuestionTag.where(profe_id: params[:tag_id])
-    end
   end
 end

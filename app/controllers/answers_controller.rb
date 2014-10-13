@@ -14,6 +14,9 @@ class AnswersController < ApplicationController
     ans.consultant = params[:consultant]
     ans.parent_id = params[:parent_id] if params[:parent_id].present?
     if ans.save
+      question = Question.find params[:question_id]
+      question.answer_count = question.answer_count.to_i + 1
+      question.save
       render :json => {:result => "1"}
     else
       render :json => {:result => "0", message: '回复失败！'}
