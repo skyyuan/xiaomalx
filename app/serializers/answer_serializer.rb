@@ -34,4 +34,8 @@ class AnswerSerializer < ActiveModel::Serializer
   def is_praise
 
   end
+
+  def praise
+    object.praises.count
+  end
 end
