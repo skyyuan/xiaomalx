@@ -3,6 +3,7 @@ class CreatePraises < ActiveRecord::Migration
     create_table :praises do |t|
       t.integer :answer_id
       t.integer :user_id
+      t.integer :consultant
       t.timestamps
     end
   end

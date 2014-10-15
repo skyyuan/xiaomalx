@@ -22,4 +22,13 @@ class AnswersController < ApplicationController
       render :json => {:result => "0", message: '回复失败！'}
     end
   end
+
+  def destroy
+    ans = Answer.find params[:id]
+    if ans.destroy
+      render :json => {:result => "1"}
+    else
+      render :json => {:result => "0", message: '删除失败！'}
+    end
+  end
 end
