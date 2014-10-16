@@ -106,7 +106,7 @@ class QuestionsController < ApplicationController
 
         json_data << {'title' => answer.title, 'name' => name, 'user_id' => answer.object_id,
           'consultant' => answer.consultant, 'star_level' => '', 'is_praise' => is_praise,
-          'praise' => answer.praises.count, 'reply' => reply, 'created_at' => answer.created_at.strftime("%Y-%m-%d %H:%M:%S")}
+          'praise' => answer.praises.count, 'reply' => reply, 'created_at' => answer.created_at.strftime("%Y-%m-%d %H:%M:%S"), 'now' => Time.now.strftime("%Y-%m-%d %H:%M:%S")}
       end
     end
     render :json => {questions: json_data}

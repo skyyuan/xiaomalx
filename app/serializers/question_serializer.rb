@@ -1,5 +1,5 @@
 class QuestionSerializer < ActiveModel::Serializer
-  attributes :id, :title, :name, :created_at, :recommend, :preview, :answer_count, :tags
+  attributes :id, :title, :name, :created_at, :now, :recommend, :preview, :answer_count, :tags
   def name
     {'id' => object.elder.id,
      'name' => object.elder.nickname,
@@ -9,6 +9,10 @@ class QuestionSerializer < ActiveModel::Serializer
 
   def created_at
     object.created_at.strftime("%Y-%m-%d %H:%M:%S")
+  end
+
+  def now
+    Time.now.strftime("%Y-%m-%d %H:%M:%S")
   end
 
   def tags
