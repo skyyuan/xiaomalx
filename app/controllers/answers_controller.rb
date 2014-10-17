@@ -17,7 +17,32 @@ class AnswersController < ApplicationController
       question = Question.find params[:question_id]
       question.answer_count = question.answer_count.to_i + 1
       question.save
-      render :json => {:result => "1"}
+      json_data = []
+      name = ''
+      if ans.consultant.to_i == 1
+        name = ConsultantUser.find(ans.object_id).name
+      else
+        name = Elder.find(ans.object_id).nickname
+      end
+      praise = Praise.find_by(answer_id: ans.id, user_id: ans.object_id, consultant: ans.consultant)
+      is_praise = 0
+      if praise.present?
+        is_praise = 1
+      end
+      reply = ""
+      if ans.parent.present?
+        if ans.parent.consultant.to_i == 1
+          reply = '回复' + ConsultantUser.find(ans.parent.object_id).name + '：' + ans.parent.title
+        else
+          reply = '回复' + Elder.find(ans.parent.object_id).nickname + '：' + ans.parent.title
+        end
+      end
+
+      json_data << {'id'=> ans.id ,'title' => ans.title, 'name' => name, 'user_id' => ans.object_id,
+        'consultant' => ans.consultant, 'star_level' => 0, 'is_praise' => is_praise,
+        'praise' => ans.praises.count, 'reply' => reply, 'created_at' => ans.created_at.strftime("%Y-%m-%d %H:%M:%S"), 'now' => Time.now.strftime("%Y-%m-%d %H:%M:%S")}
+
+      render :json => {:result => "1", question: json_data}
     else
       render :json => {:result => "0", message: '回复失败！'}
     end

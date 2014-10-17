@@ -77,9 +77,11 @@ class QuestionsController < ApplicationController
   end
 
   def question_answers
-    question = Question.find params[:question_id]
-    question.preview = question.preview.to_i + 1
-    question.save
+    if params[:page].present? && params[:page].to_i == 1
+      question = Question.find params[:question_id]
+      question.preview = question.preview.to_i + 1
+      question.save
+    end
     answers = Answer.where(question_id: params[:question_id]).page(params[:page]).per(params[:page_per])
     json_data = []
     if answers.present?
@@ -104,8 +106,8 @@ class QuestionsController < ApplicationController
           end
         end
 
-        json_data << {'title' => answer.title, 'name' => name, 'user_id' => answer.object_id,
-          'consultant' => answer.consultant, 'star_level' => '', 'is_praise' => is_praise,
+        json_data << {'id'=> answer.id ,'title' => answer.title, 'name' => name, 'user_id' => answer.object_id,
+          'consultant' => answer.consultant, 'star_level' => 0, 'is_praise' => is_praise,
           'praise' => answer.praises.count, 'reply' => reply, 'created_at' => answer.created_at.strftime("%Y-%m-%d %H:%M:%S"), 'now' => Time.now.strftime("%Y-%m-%d %H:%M:%S")}
       end
     end
