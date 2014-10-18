@@ -56,7 +56,11 @@ class ConsultantUserController < ApplicationController
       user.login
       render_success_json('注册成功',{'uid'=>user.uid,'token'=>user.token})
     else
-      render_failure_json('注册失败',user.errors.messages)
+      error_arr = []
+      user.errors.messages.each do |u,value|
+        error_arr << value
+      end
+      render_failure_json(error_arr.join(","),{'error'=>0})
     end
   end
 
@@ -90,7 +94,7 @@ class ConsultantUserController < ApplicationController
       user.login
       render_success_json('登陆成功',{'uid'=>user.uid,'token'=>user.token})
     else
-      render_failure_json('用户名或密码错误')
+      render_failure_json('手机号或密码错误',{'error'=>0})
     end
   end
 
