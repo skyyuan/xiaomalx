@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.json { render json: {result: 1, user: user, is_advisory: is_advisory_informations} } if user.present?
-      format.json { render json: {result: 0, message: "您输入的密码有误, 请重新输入！"} } if !user.present?
+      format.json { render json: {result: 0, message: "您输入的帐号密码有误, 请重新输入！"} } if !user.present?
     end
   end
 

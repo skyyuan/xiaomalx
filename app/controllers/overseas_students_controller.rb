@@ -134,7 +134,11 @@ class OverseasStudentsController < ApplicationController
     if @overseas_student.save
       render_success_json('添加成功',{'id'=>@overseas_student.id})
     else
-      render_failure_json('添加失败',@overseas_student.errors.messages)
+      error_arr = []
+      @overseas_student.errors.messages.each do |u,value|
+        error_arr << value
+      end
+      render_failure_json(error_arr.join(","),{'error'=>0})
     end
   end
 
